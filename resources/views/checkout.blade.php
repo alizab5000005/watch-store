@@ -24,6 +24,13 @@
      <div class="row">
        <div class="col-md-12">
         <div class="checkout-area">
+            @if($errors->any())
+    @foreach ($errors->all() as $error)
+    <div class="alert alert-danger">
+    {{$error}}
+    </div>
+    @endforeach
+    @endif
           <form action="{{url('order')}}" method="post">
             @csrf
             <div class="row">
@@ -48,19 +55,19 @@
                           <div class="row">
                              <div class="col-md-4">
                             <div class="aa-checkout-single-bill">
-                                <input type="text" name="city" placeholder="City / Town*" required>
+                                <input type="text" name="city" placeholder="City / Town*" >
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="aa-checkout-single-bill">
-                                <input type="tel" name="phone" placeholder="Phone*" required>
+                                <input type="tel" name="customer_phone" placeholder="Phone*" >
                               </div>
                             </div>
                            
                           
                             <div class="col-md-4">
                               <div class="aa-checkout-single-bill">
-                                <input type="text" name="zip_code" class="form-control" placeholder="Zip Code" required>
+                                <input type="text" name="zip_code" class="form-control" placeholder="Zip Code" >
                               </div>                             
                             </div>                            
                           </div>
@@ -68,14 +75,14 @@
                            <div class="row">
                             <div class="col-md-8">
                               <div>
-                                <textarea required placeholder="Address" name="address" class="form-control"></textarea>
+                                <textarea  placeholder="Address" name="address" class="form-control"></textarea>
                               </div>                             
                             </div> 
                             <div class="col-md-4">
                               <div>
                                 <p>Payment Method</p>
-                                Cash ON Delivery <input required type="radio" value="cod" name="pay_mode" >
-                                <span style="margin-left: 20px">OnLine </span><input required value="online" type="radio" name="pay_mode" class="ml-4">
+                                Cash ON Delivery <input  type="radio" value="cod" name="pay_mode" >
+                                <span style="margin-left: 20px">OnLine </span><input  value="online" type="radio" name="pay_mode" class="ml-4">
                               </div>                             
                             </div>                            
                           </div>              
@@ -102,11 +109,12 @@
                          @foreach($products as $product)
                         <tr>
                          <td>{{$product->name}} <strong> x  {{$product->qty}}</strong></td>
-                         <input type="hidden" name="products[]" value="{{$product->name.' (qty : '.$product->qty.') (Size : '.$product->size}})">
+                         <input type="hidden" name="products[]" value="{{$product->name.' (qty : '.$product->qty.')' }}">
                           <td>Rs {{number_format($product->total_price)}}/-</td>
                         </tr>
-
-                       
+                         
+                       <input type="hidden" name="q[]" value="{{$product->qty}}">
+                       <input type="hidden" name="p_id[]" value="{{$product->p_id}}">
                          <?php $gt+=$product->total_price?>
                          <input type="hidden" name="total_amount" value="{{$gt}}">
                          @endforeach
@@ -146,120 +154,4 @@
  </section>
  <!-- / Cart view section -->
 
-  <!-- footer -->  
-  <footer id="aa-footer">
-    <!-- footer bottom -->
-    <div class="aa-footer-top">
-     <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-top-area">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <h3>Main Menu</h3>
-                  <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Our Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Knowledge Base</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Delivery</a></li>
-                      <li><a href="#">Returns</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Discount</a></li>
-                      <li><a href="#">Special Offer</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Useful Links</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Site Map</a></li>
-                      <li><a href="#">Search</a></li>
-                      <li><a href="#">Advanced Search</a></li>
-                      <li><a href="#">Suppliers</a></li>
-                      <li><a href="#">FAQ</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Contact Us</h3>
-                    <address>
-                      <p> 25 Astor Pl, NY 10003, USA</p>
-                      <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
-                      <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
-                    </address>
-                    <div class="aa-footer-social">
-                      <a href="#"><span class="fa fa-facebook"></span></a>
-                      <a href="#"><span class="fa fa-twitter"></span></a>
-                      <a href="#"><span class="fa fa-google-plus"></span></a>
-                      <a href="#"><span class="fa fa-youtube"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
-    </div>
-    <!-- footer-bottom -->
-    <div class="aa-footer-bottom">
-      <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-bottom-area">
-            <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
-            <div class="aa-footer-payment">
-              <span class="fa fa-cc-mastercard"></span>
-              <span class="fa fa-cc-visa"></span>
-              <span class="fa fa-paypal"></span>
-              <span class="fa fa-cc-discover"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </footer>
-  <!-- / footer -->
-  <!-- Login Modal -->  
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">                      
-        <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4>Login or Register</h4>
-          <form class="aa-login-form" action="">
-            <label for="">Username or Email address<span>*</span></label>
-            <input type="text" placeholder="Username or email">
-            <label for="">Password<span>*</span></label>
-            <input type="password" placeholder="Password">
-            <button class="aa-browse-btn" type="submit">Login</button>
-            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
-            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
-            <div class="aa-register-now">
-              Don't have an account?<a href="account.html">Register now!</a>
-            </div>
-          </form>
-        </div>                        
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
 @endsection

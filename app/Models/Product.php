@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable =['name','image','category_id','price','brand','model','short_desc','desc','keywords','technical_specification','uses','warranty','status'];
+    protected $fillable =['name','image','brand','category_id','price','qty','short_desc','desc','status'];
+}
+
+ function prod()
+{
+	return $this->hasMany(Products::class,'id');
 }

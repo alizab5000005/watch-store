@@ -7,19 +7,26 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShowProduct;
 use App\Http\Controllers\ShowOrder;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [ShowProduct::class,'show_product']);
 Route::get('/single_product/{id}/{name}/{category_id}', [ShowProduct::class,'show_single_product']);
+Route::get('/brands/{id}', [ShowProduct::class,'specific_brand']);
 Route::get('/customer_reg', [CustomerController::class,'customer_reg']);
 Route::post('/submit_reg', [CustomerController::class,'customer_store']);
 Route::get('/customer_login', [CustomerController::class,'customer_login']);
 Route::post('/submit_login', [CustomerController::class,'customer_auth']);
 Route::post('/search', [ProductController::class,'search']);
+Route::get('/about_us',function(){
+    return view('about_us');
+});
 Route::group(['middleware'=>'customer_auth'],function(){
 Route::get('/men_product', [ShowProduct::class,'show_men_product']);
+Route::get('/contacts', [ContactController::class,'show_contacts']);
+Route::get('/orders', [ShowOrder::class,'show_order_to_user']);
 
 
 Route::post('/cart/{id}', [CartController::class,'add_to_cart'])->name('/cart/id');

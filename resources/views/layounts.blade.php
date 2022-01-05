@@ -19,7 +19,7 @@
     <!-- price picker slider -->
     <link rel="stylesheet" type="text/css" href="{{asset('show_assets/css/nouislider.css')}}">
     <!-- Theme color -->
-     <link id="switcher" href="{{asset('show_assets/css/theme-color/default-theme.css')}}" rel="stylesheet">
+     <link id="switcher" href="{{asset('show_assets/css/theme-color/bridge-theme.css')}}" rel="stylesheet">
     <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet">
     <!-- Top Slider CSS -->
     <link href="{{asset('show_assets/css/sequence-theme.modern-slide-in.css')}}" rel="stylesheet" media="all">
@@ -53,6 +53,8 @@
     <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
   <!-- END SCROLL TOP BUTTON -->
 
+ 
+
 
   <!-- Start header section -->
   <header id="aa-header">
@@ -66,22 +68,13 @@
                    @if(session('CUSTOMER_ID'))
                   <li>
 
-                  <div class="dropdown">
-                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <h4>{{session('CUSTOMER_USERNAME')}}</h4>
-                   </a>
-
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="{{url('customer_logout')}}"><h5>Logout</h5></a>
-                 </div>
-                  </div>
-
                   
-                   </li>
+                  <h4>{{session('CUSTOMER_USERNAME')}}  <span> <a class="btn btn-danger" style="color: white" href="{{url('customer_logout')}}">Logout </a></span></h4>
+                  </li>
                   @else
                   <h4>
-                  <li><a href="customer_reg">Create Account</a></li>
-                  <li><a href="customer_login">Login</a></li></h4>
+                  <li><a href="{{url('customer_reg')}}">Create Account</a></li>
+                  <li><a href="{{url('customer_login')}}">Login</a></li></h4>
                   @endif
                   
                 </ul>
@@ -102,9 +95,9 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
-                  <span class="fa fa-shopping-cart"></span>
-                  <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
+                <a href="{{url('/')}}">
+                  <span class="fa fa-clock-o"></span>
+                  <p>Awesome<strong>Watches</strong> <span>Best Shopping Site</span></p>
                 </a>
                 <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
@@ -125,13 +118,13 @@
               </div>
               <!-- / cart box -->
               <!-- search box -->
-              <div class="aa-search-box">
+            <!--   <div class="aa-search-box">
                 <form action="{{url('search')}}" method="post">
                   @csrf
                   <input type="text" name="searchTerm" id="" placeholder="Search here ex. 'man' ">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
-              </div>
+              </div> -->
               <!-- / search box -->             
             </div>
           </div>
@@ -141,9 +134,114 @@
     <!-- / header bottom  -->
   </header>
   <!-- / header section -->
+   <!-- menu -->
+  <section id="menu">
+    <div class="container">
+      <div class="menu-area">
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>          
+          </div>
+          <div class="navbar-collapse collapse">
+            <!-- Left nav -->
+            <ul class="nav navbar-nav">
+              <li><a href="{{url('/')}}">Home</a></li>
+              <li><a href="{{url('contacts')}}">Contact Us</a></li>
+              <li><a href="{{url('/about_us')}}">About Us</a></li>            
+              <li><a href="{{url('/orders')}}">Orders</a></li> 
+              
+             
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>       
+    </div>
+  </section>
+  <!-- / menu -->
 
   @section('styles')
   @show
+   <!-- footer -->  
+  <footer id="aa-footer" class="mt-4">
+    <!-- footer bottom -->
+    <div class="aa-footer-top">
+     <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="aa-footer-top-area">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <h3>Main Menu</h3>
+                  <ul class="aa-footer-nav">
+                    <li><a href="{{url('/')}}">Home</a></li>
+                    <li><a href="{{url('/customer_login')}}">Login</a></li>
+                    <li><a href="{{url('/customer_reg')}}">Create Account</a></li>
+                   
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>Knowledge Base</h3>
+                    <ul class="aa-footer-nav">
+                      <li><a href="#">Delivery</a></li>
+                      <li><a href="#">Returns</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Discount</a></li>
+                      <li><a href="#">Special Offer</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>Useful Links</h3>
+                    <ul class="aa-footer-nav">
+                      <li><a href="{{url('/about_us')}}">About Us</a></li>
+                      <li><a href="{{url('/contact_us')}}">Contact Us</a></li>
+                      <li><a href="{{url('/orders')}}">Orders</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>Contact Us</h3>
+                    <address>
+                      <p> Nowshera Cantt, KPK</p>
+                      <p><span class="fa fa-phone"></span>0000 000 0000</p>
+                      <p><span class="fa fa-envelope"></span>example000@gmail.com</p>
+                    </address>
+                    <div class="aa-footer-social">
+                      <a href="#"><span class="fa fa-facebook"></span></a>
+                      <a href="#"><span class="fa fa-twitter"></span></a>
+                      <a href="#"><span class="fa fa-google-plus"></span></a>
+                      <a href="#"><span class="fa fa-youtube"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+  </footer>
+  <!-- / footer -->
+
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -46,9 +46,9 @@
                         <td colspan="3">{{$order->products}}</td>
                         <td>{{$order->total_amount}}</td>
                         <td>{{$order->pay_mode}}</td>
-                        @if($order->Completed)
+                        @if($order->Completed == 1)
                         <td>
-                           <h4><span class="fas fa-check-double" style="color: green;"></span></h4>
+                           <h4><span class="fas fa-check" style="color: green;"></span></h4>
                         </td>
                         @else
                         <td>

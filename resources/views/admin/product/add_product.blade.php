@@ -3,14 +3,23 @@
 @section('product_select','active')
 @section('container')
 
-<h1 class="mb10">Manage Product</h1>
-<a href="{{url('admin/product')}}">
+<h1 class="mb10">Add Product</h1>
+<a href="{{url('admin/product/products')}}">
 <button type="button" class="btn btn-success">
 Back
 </button>
 </a>
 <div class="row m-t-30">
    <div class="col-md-12">
+   	         @if($errors->any())
+    @foreach ($errors->all() as $error)
+    <div class="alert alert-danger">
+    {{$error}}
+    </div>
+    @endforeach
+    @endif
+
+     
       <form action="{{route('product.submit_product')}}" method="post" enctype="multipart/form-data">
          <div class="row">
             <div class="col-lg-12">
@@ -45,37 +54,33 @@ Back
                               <label for="price" class="control-label mb-1"> Price</label>
                               <input id="price"  name="price" type="text" class="form-control" aria-="true" aria-invalid="false" >
                            </div>
-                           <div class="col-md-3">
-                              <label for="brand" class="control-label mb-1"> Brand</label>
-                              <input id="brand"  name="brand" type="text" class="form-control" aria-="true" aria-invalid="false" >
+                            <div class="col-md-1">
+                              <label for="qty" class="control-label mb-1"> Quantity</label>
+                              <input id="qty"  name="qty" type="text" class="form-control" aria-="true" aria-invalid="false" >
                            </div>
-                           <div class="col-md-3">
-                              <label for="model" class="control-label mb-1"> Model</label>
-                              <input id="model" name="model" type="text" class="form-control" aria-="true" aria-invalid="false" >
+                           <div class="col-md-5">
+                              <label for="price" class="control-label mb-1"> Brands Category</label>
+                              <select class="form-control" name="brand">
+                              	<option>--Select Brand--</option>
+                              	@foreach($brands as $brand)
+                              	<option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                              	@endforeach
+                              </select> 
                            </div>
-                        </div>
+                         
+                        
+                   
                      </div>
-                     <div class="form-group">
-                        <label for="short_desc" class="control-label mb-1"> Short Desc</label>
+                     </div>
+                       <div class="form-group">
+                        <label for="short_desc" class="control-label mb-1"> Short Descition</label>
                         <textarea id="short_desc" name="short_desc" type="text" class="form-control" aria-="true" aria-invalid="false" ></textarea>
                      </div>
                      <div class="form-group">
-                        <label for="desc" class="control-label mb-1"> Desc</label>
+                        <label for="desc" class="control-label mb-1">Long Description</label>
                         <textarea id="desc" name="desc" type="text" class="form-control" aria-="true" aria-invalid="false" ></textarea>
                      </div>
-                     <div class="form-group">
-                        <label for="keywords" class="control-label mb-1"> Keywords</label>
-                        <textarea id="keywords" name="keywords" type="text" class="form-control" aria-="true" aria-invalid="false" ></textarea>
-                     </div>
-                     <div class="form-group">
-                        <label for="technical_specification" class="control-label mb-1"> Technical Specification</label>
-                        <textarea id="technical_specification" name="technical_specification" type="text" class="form-control" aria-="true" aria-invalid="false" ></textarea>
-                     </div>
-                  
-                     <div class="form-group">
-                        <label for="warranty" class="control-label mb-1"> Warranty</label>
-                        <textarea id="warranty" name="warranty" type="text" class="form-control" aria-="true" aria-invalid="false" ></textarea>
-                     </div>
+                   
                   </div>
                </div>
             </div>

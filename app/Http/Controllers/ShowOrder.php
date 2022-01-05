@@ -38,5 +38,9 @@ class ShowOrder extends Controller
     	DB::table('customers')->delete(['id'=>$request->id]);
     	return redirect()->back()->with('msg','customer has been deleted');
     }
-
+    public function show_order_to_user()
+    {
+        $c_orders = DB::table('orders')->where(['customer_name'=>session('CUSTOMER_USERNAME')])->get();
+        return view('customers_orders',compact('c_orders'));
+    }
 }

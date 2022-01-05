@@ -4,14 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('page_title')</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Fontfaces CSS-->
     <link href="{{asset('admin_assets/css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('admin_assets/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('admin_assets/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('admin_assets/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
     <link href="{{asset('admin_assets/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{{asset('admin_assets/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin_assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin_assets/vendor/wow/animate.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin_assets/vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin_assets/vendor/slick/slick.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin_assets/vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('admin_assets/vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
     <link href="{{asset('admin_assets/css/theme.css')}}" rel="stylesheet" media="all">
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 </head>
 
@@ -53,7 +68,7 @@
                         </li>
                         <li class="@yield('order_select')">
                             <a href="{{url('admin/orders')}}">
-                                <i class="fas fa-tag"></i>Orders</a>
+                                <i class="fas fa-order"></i>Orders</a>
                         </li>
                          <li class="@yield('product_select')">
                             <a href="{{url('admin/product/products')}}">
@@ -88,15 +103,15 @@
                        
                          <li class="@yield('customer_select')">
                             <a href="{{url('admin/customers')}}">
-                                <i class="fas fa-tag"></i>Customers</a>
+                                <i class="fas fa-users"></i>Customers</a>
                         </li>
                         <li class="@yield('order_select')">
                             <a href="{{url('admin/orders')}}">
-                                <i class="fas fa-tag"></i>Orders</a>
+                                <i class="fab fa-first-order"></i>Orders</a>
                         </li>
                          <li class="@yield('product_select')">
                             <a href="{{url('admin/product/products')}}">
-                                <i class="fas fa-tag"></i>Product</a>
+                                <i class="fab fa-product-hunt"></i>Product</a>
                         </li>
                     </ul>
                 </nav>
@@ -167,6 +182,7 @@
     </div>
 
 
+
     <script src="{{asset('admin_assets/vendor/jquery-3.2.1.min.js')}}"></script>
     <!-- Bootstrap JS-->
     <script src="{{asset('admin_assets/vendor/bootstrap-4.1/popper.min.js')}}"></script>
@@ -187,5 +203,6 @@
     <script src="{{asset('admin_assets/vendor/select2/select2.min.js')}}">
     </script>
     <script src="{{asset('admin_assets/js/main.js')}}"></script>
+
 </body>
 </html>

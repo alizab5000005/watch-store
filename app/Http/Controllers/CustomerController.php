@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -21,7 +22,11 @@ class CustomerController extends Controller
        $verify_email = "";
        $verify_pass = "";
        $res = "";
-
+       $re = Customer::where('email',$email)->where(['status'=>0])->value('email');
+        if($re)
+        {
+            return redirect('customer_login')->with('msg', 'Access Denied');
+        }
        $result = Customer::where('email',$email)->value('email');
        $results = Customer::where('password',$password)->value('password');
        //return $result.$results;
@@ -58,7 +63,7 @@ class CustomerController extends Controller
         return view('reg');
     }
 
-    public function customer_store(Request $request)
+    public function customer_store(CustomerRequest $request)
     {
         $get_id = Customer::create($request->all());
        

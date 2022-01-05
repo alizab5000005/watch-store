@@ -4,9 +4,9 @@
 @section('container')
 
 <h3><span>
-    <a href="products">
+    <a href="{{url('admin/product/products')}}">
     <button type="button" class=" btn btn-success">Back</button>
-  </a></span>Add Product</h3>
+  </a></span>Edit Product</h3>
 <div class="row">
     <div class="col-md-12">
         <div class="mt-2">
@@ -24,13 +24,13 @@
                             <form action="../update_product/{{$product->id}}" method="post" enctype="multipart/form-data">
                             @csrf
                                 <div class="row">
-                                <div class="form-group col-lg-4">
+                                <div class="form-group col-lg-6">
                                     <label for="name" class="control-label mb-1">Name</label>
                                     <input id="name" name="name" type="text" class="form-control"
                                     value="{{$product->name}}">
                                 </div>
                                
-                                 <div class="form-group col-lg-4">
+                                 <div class="form-group col-lg-6">
                                     <label for="image" class="control-label mb-1">Image</label>
                                     <input id="image" name="image" type="file" class="form-control"
                                     value="{{$product->image}}">
@@ -49,18 +49,30 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                 <div class="form-group col-lg-4">
-                                    <label for="brand" class="control-label mb-1">Brand</label>
-                                    <input id="brand" name="brand" type="text" class="form-control"
-                                    value="{{$product->brand}}">
+                                 <div class="form-group col-lg-2">
+                                    <label for="price" class="control-label mb-1">Price</label>
+                                    <input id="price" name="price" type="text" class="form-control"
+                                    value="{{$product->price}}">
                                 </div>
-                                 <div class="form-group col-lg-4">
-                                    <label for="model" class="control-label mb-1">Model</label>
-                                    <input id="model" name="model" type="text" class="form-control"
-                                    value="{{$product->model}}">
+                                 <div class="col-md-1">
+                                  <label for="qty" class="control-label mb-1"> Quantity</label>
+                                 <input id="qty"  name="qty" value="{{$product->qty}}" type="text" class="form-control" aria-="true" aria-invalid="false" >
+                           </div>
+                                <div class="col-md-5">
+                              <label for="price" class="control-label mb-1"> Brands Category</label>
+                              <select class="form-control" name="brand">
+                                @foreach($selected_brand as $b)
+                                <option value="{{$b->id}}">{{$b->brand_name}}</option>
+                                @endforeach
+                                @foreach($brands as $brand)
+                                <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                                @endforeach
+                              </select> 
+                           </div>
+                                
+                               
                                 </div>
-                                </div>
-                                 <div class="form-group">
+                                  <div class="form-group">
                                     <label class="control-label mb-1">Short Description</label>
                                     <textarea name="short_desc" class="form-control">{{$product->short_desc}}</textarea>
                                 </div>
@@ -68,19 +80,7 @@
                                     <label class="control-label mb-1">Description</label>
                                     <textarea name="desc" class="form-control">{{$product->desc}}</textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label mb-1">Keywords</label>
-                                    <textarea name="keywords" class="form-control">{{$product->keywords}}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label mb-1">Technical Specification</label>
-                                    <textarea name="technical_specification" class="form-control">{{$product->technical_specification}}</textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label class="control-label mb-1">Warranty</label>
-                                    <textarea name="warranty" class="form-control">{{$product->warranty}}</textarea>
-                                </div>
+                               
                                 <div>
             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
             Submit

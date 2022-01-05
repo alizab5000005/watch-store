@@ -23,7 +23,6 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Brand</th>
                         <th>Image</th>
                         <th>Action</th>
                                                 
@@ -33,7 +32,7 @@
                       @foreach($products as $product)
                     <tr>
                         <td>{{$product->name}}</td>
-                        <td>{{$product->brand}}</td>
+                        
                         <td><img src="{{asset('/storage/images/'.$product->image)}}" width="70"></td>
                        
                         <td>

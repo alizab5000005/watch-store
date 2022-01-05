@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use App\Http\Requests\CartRequest;
 use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
   
-    public function add_to_cart(Request $request)
+    public function add_to_cart(CartRequest $request)
     {
 
         Cart::create($request->all());
@@ -40,10 +41,11 @@ class CartController extends Controller
         $items =DB::table('carts')->where(['customer_id'=>session('CUSTOMER_ID')])->get();
         $i = count($items);
         session(['k' => $i]);
+        return redirect('cart');
     }
     public function proceed_to_checkout(Request $request)
     {
-        return $request->qty;
+        //return $request->qty;
         $products =  Cart::where(['customer_id'=>session('CUSTOMER_ID')])->get();
 
         return view('checkout', compact('products'));
